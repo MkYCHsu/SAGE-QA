@@ -25,6 +25,7 @@ from deploy.runtime import (
 from core import init_context, set_debug, shared_context
 from agents.factory import build_agents, build_groupchat, reset_all_agents, clear_cache_dir, save_answer_outputs
 from sample_questions import DEFAULT_QUESTIONS
+from events import EventEmitter, SAGEEvent, set_current_emitter
 
 
 class SAGEQAApp:
@@ -104,6 +105,23 @@ class SAGEQAApp:
             answer = self.user_proxy.initiate_chat(self.manager, message=f"{question}\n")
             save_answer_outputs(Path("outputs"), output_name, question, answer)
             return answer
+
+    def ask_stream(self, question: str, emitter: EventEmitter, output_name: str = "stream"):
+        """Run QA while emitting structured visible runtime events.
+
+        This preserves the normal ask() behavior and only adds event emission.
+        """
+        if not self.ready:
+            self.setup()
+
+        set_current_emitter(emitter)
+        try:
+            emitter.emit(SAGEEvent(type="run_start", agent="user", content=question))
+            answer = self.ask(question, output_name=output_name)
+            emitter.emit(SAGEEvent(type="final_answer", agent="summarizer", content=str(answer)))
+            return answer
+        finally:
+            set_current_emitter(None)
 
     def ask_sample(self, sample_index: int):
         if sample_index < 1 or sample_index > len(DEFAULT_QUESTIONS):

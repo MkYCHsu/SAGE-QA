@@ -10,6 +10,7 @@ from autogen import register_function
 from config import SAGEConfig
 from prompts import PLANNER_PROMPT, ENGINEER_PROMPT, CRITIC_PROMPT, SUMMARIZER_PROMPT
 from knowledge.tools import graph_source_rag
+from events import emit_next_speaker, emit_visible_groupchat_message
 
 
 def build_agents(config: SAGEConfig):
@@ -127,6 +128,10 @@ def prune_messages(groupchat: autogen.GroupChat, agent_name: str, start: int = 0
 def make_speaker_selection(user_proxy, planner, engineer, critic, summarizer):
     # Notebook-faithful speaker function. No extra guards/state machine.
     def speaker_selection_func(last_speaker, groupchat: autogen.GroupChat):
+        # Stream the visible message that was just appended by AutoGen.
+        # This is structured event output, not hidden chain-of-thought.
+        emit_visible_groupchat_message(groupchat)
+
         next_speaker = planner
 
         if len(groupchat.messages) <= 1:
@@ -161,6 +166,7 @@ def make_speaker_selection(user_proxy, planner, engineer, critic, summarizer):
         if last_speaker is summarizer:
             next_speaker = None
 
+        emit_next_speaker(next_speaker)
         prune_messages(groupchat, "user_proxy", role_filter="tool")
         return next_speaker
 
