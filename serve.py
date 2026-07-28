@@ -1079,12 +1079,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--data-dir",
-        default=os.environ.get("QA_DATA_DIR", "./GRAPHDATA_TSMC"),
+        default=os.environ.get("QA_DATA_DIR", "./GRAPHDATA"),
         help="Graph data directory.",
     )
     parser.add_argument(
         "--data-dir-out",
-        default=os.environ.get("QA_DATA_DIR_OUT", "./GRAPHDATA_TSMC_OUTPUT"),
+        default=os.environ.get("QA_DATA_DIR_OUT", "./GRAPHDATA_OUTPUT"),
         help="Graph output directory.",
     )
     parser.add_argument(
