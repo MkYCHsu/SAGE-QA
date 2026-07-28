@@ -86,8 +86,8 @@ sage_qa/
 │       └── vllm_patch.py
 ├── models/
 ├── chroma/
-├── GRAPHDATA_TSMC/
-├── GRAPHDATA_TSMC_OUTPUT/
+├── GRAPHDATA/
+├── GRAPHDATA_OUTPUT/
 └── outputs/
 ```
 
@@ -96,8 +96,8 @@ Runtime data should stay local and should not be committed:
 ```text
 models/
 chroma/
-GRAPHDATA_TSMC/
-GRAPHDATA_TSMC_OUTPUT/
+GRAPHDATA/
+GRAPHDATA_OUTPUT/
 outputs/
 ```
 
@@ -105,8 +105,8 @@ The runtime data folders can be real folders or symbolic links to external locat
 
 ```text
 chroma -> /path/to/chroma
-GRAPHDATA_TSMC -> /path/to/graph/data
-GRAPHDATA_TSMC_OUTPUT -> /path/to/graph/output
+GRAPHDATA -> /path/to/graph/data
+GRAPHDATA_OUTPUT -> /path/to/graph/output
 models -> /path/to/local/models
 ```
 
@@ -176,12 +176,12 @@ pip install -r requirements.txt
 Expected graph data:
 
 ```text
-GRAPHDATA_TSMC/
-├── TSMC_SEMIKONG.pkl
+GRAPHDATA/
+├── SEMIKONG.pkl
 └── *_chunks_clean.csv
 
-GRAPHDATA_TSMC_OUTPUT/
-└── tsmc_5b10p.graphml
+GRAPHDATA_OUTPUT/
+└── 5b10p.graphml
 ```
 
 Expected Chroma cache:
@@ -202,8 +202,8 @@ Recommended symlink setup:
 mkdir -p models
 ln -s /actual/path/to/SEMIKONG-8b-GPTQ models/SEMIKONG-8b-GPTQ
 ln -s /actual/path/to/chroma chroma
-ln -s /actual/path/to/GRAPHDATA_TSMC GRAPHDATA_TSMC
-ln -s /actual/path/to/GRAPHDATA_TSMC_OUTPUT GRAPHDATA_TSMC_OUTPUT
+ln -s /actual/path/to/GRAPHDATA GRAPHDATA
+ln -s /actual/path/to/GRAPHDATA_OUTPUT GRAPHDATA_OUTPUT
 ```
 
 If you do not want to use the default relative paths, manually pass the data paths at runtime:
@@ -212,8 +212,8 @@ If you do not want to use the default relative paths, manually pass the data pat
 python main.py \
   --base-url http://localhost:8080/v1 \
   --model llama3.3-70b \
-  --data-dir /path/to/GRAPHDATA_TSMC \
-  --data-dir-out /path/to/GRAPHDATA_TSMC_OUTPUT \
+  --data-dir /path/to/GRAPHDATA \
+  --data-dir-out /path/to/GRAPHDATA_OUTPUT \
   --sample-index 1
 ```
 
@@ -223,16 +223,16 @@ For server mode:
 python serve.py \
   --base-url http://localhost:8080/v1 \
   --model llama3.3-70b \
-  --data-dir /path/to/GRAPHDATA_TSMC \
-  --data-dir-out /path/to/GRAPHDATA_TSMC_OUTPUT \
+  --data-dir /path/to/GRAPHDATA \
+  --data-dir-out /path/to/GRAPHDATA_OUTPUT \
   --port 8000
 ```
 
 If `--data-dir` and `--data-dir-out` are not provided, SAGE-QA expects:
 
 ```text
-./GRAPHDATA_TSMC
-./GRAPHDATA_TSMC_OUTPUT
+./GRAPHDATA
+./GRAPHDATA
 ```
 
 ---
@@ -247,8 +247,8 @@ Sample Q1:
 python main.py \
   --base-url http://localhost:8080/v1 \
   --model llama3.3-70b \
-  --data-dir ./GRAPHDATA_TSMC \
-  --data-dir-out ./GRAPHDATA_TSMC_OUTPUT \
+  --data-dir ./GRAPHDATA \
+  --data-dir-out ./GRAPHDATA_OUTPUT \
   --sample-index 1
 ```
 
@@ -258,8 +258,8 @@ Custom question:
 python main.py \
   --base-url http://localhost:8080/v1 \
   --model llama3.3-70b \
-  --data-dir ./GRAPHDATA_TSMC \
-  --data-dir-out ./GRAPHDATA_TSMC_OUTPUT \
+  --data-dir ./GRAPHDATA \
+  --data-dir-out ./GRAPHDATA_OUTPUT \
   -q "What are the knobs that can change the uniformity in radical Si-etching process?"
 ```
 
@@ -288,8 +288,8 @@ Start the SAGE-QA API server:
 python serve.py \
   --base-url http://localhost:8080/v1 \
   --model llama3.3-70b \
-  --data-dir ./GRAPHDATA_TSMC \
-  --data-dir-out ./GRAPHDATA_TSMC_OUTPUT \
+  --data-dir ./GRAPHDATA \
+  --data-dir-out ./GRAPHDATA_OUTPUT \
   --port 8000
 ```
 
@@ -322,8 +322,8 @@ Then run:
 
 ```bash
 python main.py \
-  --data-dir ./GRAPHDATA_TSMC \
-  --data-dir-out ./GRAPHDATA_TSMC_OUTPUT \
+  --data-dir ./GRAPHDATA \
+  --data-dir-out ./GRAPHDATA_OUTPUT \
   --sample-index 1
 ```
 
@@ -331,8 +331,8 @@ or:
 
 ```bash
 python serve.py \
-  --data-dir ./GRAPHDATA_TSMC \
-  --data-dir-out ./GRAPHDATA_TSMC_OUTPUT \
+  --data-dir ./GRAPHDATA \
+  --data-dir-out ./GRAPHDATA_OUTPUT \
   --port 8000
 ```
 
