@@ -2,7 +2,7 @@
 
 **SAGE-QA**: **Shared-Context Agentic Graph-Enhanced Question Answering**.
 
-SAGE-QA is a graph-grounded multi-agent question-answering framework for scientific and engineering reasoning over technical corpora. The current implementation targets semiconductor manufacturing QA, where answers often depend on connected evidence across mechanisms, materials, process conditions, equipment variables, figures, tables, and source documents.
+SAGE-QA is a graph-grounded multi-agent question-answering framework for scientific and engineering reasoning over technical corpora. The current implementation targets smart manufacturing QA, where answers often depend on connected evidence across mechanisms, materials, process conditions, equipment variables, figures, tables, and source documents.
 
 This version keeps the original notebook-style AutoGen behavior while making the code runnable as a small Python project. The directory name is `sage_qa`, and the Python source files live directly under `src/` without an extra `src/sage_qa/` package layer.
 
