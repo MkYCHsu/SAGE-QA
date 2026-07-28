@@ -395,23 +395,7 @@ agent-readable context
 
 ## Paper
 
-This repository implements the SAGE-QA workflow described in the manuscript:
-
-```bibtex
-@article{hsu2026sageqa,
-  title   = {SAGE-QA: Shared-Context Agentic Graph-Enhanced Question Answering for Scientific Reasoning in Semiconductor Manufacturing Technology},
-  author  = {Hsu, Yu-Chuan and Buehler, Markus J.},
-  year    = {2026},
-  note    = {Manuscript in preparation}
-}
-```
-
----
-
-## Citation
-
 If you use this codebase, please cite:
-
 ```bibtex
 @article{hsu2026sageqa,
   title   = {SAGE-QA: Shared-Context Agentic Graph-Enhanced Question Answering for Scientific Reasoning in Semiconductor Manufacturing Technology},
@@ -420,7 +404,6 @@ If you use this codebase, please cite:
   note    = {Manuscript in preparation}
 }
 ```
-
 ---
 
 ## License
