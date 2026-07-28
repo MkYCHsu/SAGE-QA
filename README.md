@@ -438,4 +438,4 @@ SOFTWARE.
 
 ## Acknowledgment
 
-This project was developed for research on graph-grounded multi-agent scientific question answering in semiconductor manufacturing technology.
+This project was developed for research on graph-grounded multi-agent scientific question answering in science and technology.
