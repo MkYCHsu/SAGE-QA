@@ -398,7 +398,7 @@ agent-readable context
 If you use this codebase, please cite:
 ```bibtex
 @article{hsu2026sageqa,
-  title   = {SAGE-QA: Shared-Context Agentic Graph-Enhanced Question Answering for Scientific Reasoning in Semiconductor Manufacturing Technology},
+  title   = {SAGE-QA: Shared-Context Agentic Graph-Enhanced Question Answering},
   author  = {Hsu, Yu-Chuan and Buehler, Markus J.},
   year    = {2026},
   note    = {Manuscript in preparation}
