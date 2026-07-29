@@ -74,7 +74,7 @@ def load_embedding_model(config: SAGEConfig):
 
 
 def load_graph_and_embeddings(config: SAGEConfig, tokenizer, model, device: str) -> nx.DiGraph:
-    graph_path = config.data_dir_out / "tsmc_5b10p.graphml"
+    graph_path = config.data_dir_out / "5b10p.graphml"
     if not graph_path.exists():
         raise FileNotFoundError(f"GraphML not found: {graph_path}")
 
